@@ -1,0 +1,128 @@
+:root {
+  --main-shade: #464646;
+  --main-background: #FFFFFF;
+  --main-font-color: #15141A;
+}
+
+@media (prefers-color-scheme:dark) {
+  :root {
+    --main-shade: #464646;
+    --main-background: #000000;
+    --main-font-color: #FFFFFF;
+  }
+}
+
+body {
+  margin: 0 2em;
+  overflow: auto;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.4;
+  background: var(--main-background);
+  color: var(--main-font-color);
+}
+
+.triple {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em 0;
+}
+
+.triple > *:first-child {
+  flex: 1;
+  text-align: left;
+  display: block;
+}
+
+.triple > * {
+  flex: 1;
+  text-align: center;
+  display: block;
+}
+
+.triple > *:last-child {
+  flex: 1;
+  text-align: right;
+  display: block;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: var(--main-font-color);
+}
+
+a:active, a:hover {
+  background: var(--main-shade);
+  color: white;
+  text-decoration: underline;
+}
+
+td, td {
+  vertical-align: top;
+}
+
+table.frontmatter {
+  width: 100%;
+  min-width: fit-content;
+  border-collapse: collapse; /* required for gapless backgrounds and borders */
+}
+
+table.frontmatter tr {
+  border-bottom: 2px solid var(--main-background);
+}
+
+table.frontmatter tr:hover {
+  color: white;
+  background: var(--main-shade);
+  border-bottom: 2px solid white;
+  box-shadow: 0 3px var(--main-shade);
+}
+
+table.frontmatter tr:hover a {
+  color: white;
+  text-decoration: none;
+}
+
+table.frontmatter a {
+  display: block;
+}
+
+table.frontmatter td:last-child {
+  text-align: right; 
+  padding-left: 1em;
+}
+
+table.frontmatter td:first-child {
+  padding-right: 1em;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+main.video {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+audio {
+  margin: 0 auto;
+  display: block;
+}
