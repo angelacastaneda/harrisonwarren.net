@@ -1,0 +1,33 @@
+{{ define "base" }}
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Harrison Warren">
+    <meta name="description" content="Harrison Warren's Website">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://harrisonwarren.net/"><!--todo set up path template var-->
+    <title>{{ template "title" . }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="/static/favicon.png">
+  </head> 
+  <body>
+    <header>
+      <h4><a href="/">Harrison Warren</a></h4>
+    </header>
+    <main>
+      {{ template "main" . }}
+    </main>
+    <footer>
+    {{ block "footer" . }}
+      <div class="triple">
+        <span class="fleft"><a href="/about">About</a></span>
+        <span class="fcenter"><a href="/static/files/resume.pdf">Resume</a></span>
+        <span class="fright"><a href="/contact">Contact</a></span>
+      </div> 
+    {{ end }}
+    </footer>
+  </body>
+</html>
+{{ end }}

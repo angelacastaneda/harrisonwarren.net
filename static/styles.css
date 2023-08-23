@@ -104,7 +104,7 @@ table.frontmatter td:first-child {
   text-align: center;
 }
 
-main.video {
+div.video {
   margin: 0 auto;
   width: 70%;
 }
