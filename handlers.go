@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 const (
@@ -41,9 +42,25 @@ func bindTMPL(files ...string) (*template.Template, error) {
 func pageHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	var page string
+	path := strings.Split(r.URL.Path, "/")
+	page := path[1]
 	if r.URL.Path == "/" {
 		page = "index"
+	}
+
+	if !doesFileExist(filepath.Join(htmlDir, "pages", page+tmplFileExt)) {
+		http.Error(w, "page not found", 404)
+		return
+	}
+
+	if len(path) > 2 && path[2] == "" {
+		http.Redirect(w, r, "http://"+r.Host+"/"+page, 302) // todo automate all of this
+		return
+	}
+
+	if len(path) > 2 {
+		http.Error(w, "page not found", 404)
+		return
 	}
 
 	tmpl, err := bindTMPL(
