@@ -75,3 +75,42 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 
 	tmpl.ExecuteTemplate(w, "base", nil)
 }
+
+func postHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
+	path := strings.Split(r.URL.Path, "/")
+	post := path[2]
+
+	if r.URL.Path == "/posts/" {
+		http.Redirect(w, r, "http://"+r.Host+"/", 302) // todo automate scheme
+		return
+	}
+
+	if !doesFileExist(filepath.Join(htmlDir, "posts", post+tmplFileExt)) {
+		http.Error(w, "post not found", 404)
+		return
+	}
+
+	if len(path) > 3 && path[3] == "" {
+		http.Redirect(w, r, "http://"+r.Host+"/posts/"+post, 302) // todo automate scheme
+		return
+	}
+
+	if len(path) > 3 {
+		http.Error(w, "post not found", 404)
+		return
+	}
+
+	tmpl, err := bindTMPL(
+		filepath.Join(htmlDir, "base"+tmplFileExt),
+		filepath.Join(htmlDir, "posts", post+tmplFileExt),
+	)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "internal server errors", 500)
+		return
+	}
+
+	tmpl.ExecuteTemplate(w, "base", nil)
+}
