@@ -25,9 +25,9 @@ func doesFileExist(pathToFile string) bool {
 }
 
 func bindTMPL(files ...string) (*template.Template, error) {
-	for _, checkFile := range files {
-		if !doesFileExist(checkFile) {
-			return nil, errors.New("Template file missing " + checkFile)
+	for _, f := range files {
+		if !doesFileExist(f) {
+			return nil, errors.New("Template file missing " + f)
 		}
 	}
 
