@@ -54,7 +54,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(path) > 2 && path[2] == "" {
-		http.Redirect(w, r, "http://"+r.Host+"/"+page, 302) // todo automate all of this
+		http.Redirect(w, r, scheme+"://"+r.Host+"/"+page, 302)
 		return
 	}
 
@@ -83,7 +83,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	post := path[2]
 
 	if r.URL.Path == "/posts/" {
-		http.Redirect(w, r, "http://"+r.Host+"/", 302) // todo automate scheme
+		http.Redirect(w, r, scheme+"://"+r.Host+"/", 302)
 		return
 	}
 
@@ -93,7 +93,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(path) > 3 && path[3] == "" {
-		http.Redirect(w, r, "http://"+r.Host+"/posts/"+post, 302) // todo automate scheme
+		http.Redirect(w, r, scheme+"://"+r.Host+"/posts/"+post, 302)
 		return
 	}
 
