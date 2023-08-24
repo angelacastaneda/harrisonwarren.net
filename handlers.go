@@ -1,8 +1,10 @@
 package main
 
 import (
+	"compress/gzip"
 	"errors"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -15,6 +17,30 @@ const (
 	staticDir   = "./static"
 	tmplFileExt = ".tmpl.html"
 )
+
+type gzipResponseWriter struct {
+	io.Writer
+	http.ResponseWriter
+}
+
+func (grw gzipResponseWriter) Write(data []byte) (int, error) {
+	return grw.Writer.Write(data)
+}
+
+func gzipHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		w.Header().Set("Content-Encoding", "gzip")
+		gzipWriter := gzip.NewWriter(w)
+		defer gzipWriter.Close()
+		gzippedResponseWriter := gzipResponseWriter{Writer: gzipWriter, ResponseWriter: w}
+		next.ServeHTTP(gzippedResponseWriter, r)
+	})
+}
 
 func redirectWWW(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
