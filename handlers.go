@@ -73,7 +73,9 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.ExecuteTemplate(w, "base", nil)
+	data := make(map[string]interface{})
+	data["Path"] = r.URL.Path
+	tmpl.ExecuteTemplate(w, "base", data)
 }
 
 func postHandler(w http.ResponseWriter, r *http.Request) {
@@ -112,5 +114,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmpl.ExecuteTemplate(w, "base", nil)
+	data := make(map[string]interface{})
+	data["Path"] = r.URL.Path
+	tmpl.ExecuteTemplate(w, "base", data)
 }
