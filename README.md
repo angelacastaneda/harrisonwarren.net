@@ -4,11 +4,11 @@ features:
 
 * go html templating engine
 
+* crazy table highlight for homepage
+
 todo:
 
 * finish filling out entire site
-
-* convert to golang http server
 
 * go to [bbolt](https://github.com/etcd-io/bbolt) and structs for posts
 
