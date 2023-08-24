@@ -23,6 +23,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", pageHandler)
 	mux.HandleFunc("/posts/", postHandler)
+	mux.HandleFunc("/favicon.ico", faviconHandler)
 	fileServer := http.FileServer(http.Dir("./static"))
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 

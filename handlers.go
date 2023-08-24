@@ -155,3 +155,7 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	data["Path"] = r.URL.Path
 	tmpl.ExecuteTemplate(w, "base", data)
 }
+
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+  http.ServeFile(w, r, filepath.Join(staticDir, "favicon.ico"))
+}
