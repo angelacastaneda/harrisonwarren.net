@@ -27,6 +27,6 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	log.Println("Starting server on port ", *addr)
-	err := http.ListenAndServe(*addr, mux)
+	err := http.ListenAndServe(*addr, redirectWWW(mux))
 	log.Fatal(err)
 }
