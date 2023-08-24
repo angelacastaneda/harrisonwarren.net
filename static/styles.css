@@ -1,13 +1,13 @@
 :root {
   --main-shade: #464646;
-  --main-background: #FFFFFF;
+  --main-background: #FFF2DA;
   --main-font-color: #15141A;
 }
 
 @media (prefers-color-scheme:dark) {
   :root {
     --main-shade: #464646;
-    --main-background: #000000;
+    --main-background: #1A1A1A;
     --main-font-color: #FFFFFF;
   }
 }
@@ -55,6 +55,17 @@ a:active, a:hover {
   background: var(--main-shade);
   color: white;
   text-decoration: underline;
+}
+
+::-moz-selection {
+  background: var(--main-shade);
+  color: white;
+}
+
+/* this will only work separated for some reason... */
+::selection { 
+  background: var(--main-shade);
+  color: white;
 }
 
 td, td {
@@ -125,4 +136,10 @@ div.video {
 audio {
   margin: 0 auto;
   display: block;
+}
+
+@media only screen and (max-width:650px) {
+  body {
+    margin: 0 1em;
+  }
 }
