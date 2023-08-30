@@ -6,6 +6,8 @@ features:
 
 * crazy table highlight for homepage
 
+* upload live dynamic site
+
 todo:
 
 * finish filling out entire site
@@ -13,5 +15,3 @@ todo:
 * go to [bbolt](https://github.com/etcd-io/bbolt) and structs for posts
 
 * make rss feed
-
-* upload live dynamic site
