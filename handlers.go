@@ -157,5 +157,5 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
-  http.ServeFile(w, r, filepath.Join(staticDir, "favicon.ico"))
+	http.ServeFile(w, r, filepath.Join(staticDir, "favicon.ico"))
 }
