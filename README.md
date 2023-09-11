@@ -1,4 +1,5 @@
 personal site for [harrison warren](https://harrisonwarren.net)
+===
 
 features: 
 
@@ -15,3 +16,7 @@ todo:
 * go to [bbolt](https://github.com/etcd-io/bbolt) and structs for posts
 
 * make rss feed
+
+* make archive tab
+
+* make ffmpeg/webp scripts for compression
