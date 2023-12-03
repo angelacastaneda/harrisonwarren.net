@@ -16,8 +16,6 @@ func main() {
 
 	if *addr == ":443" {
 		scheme = "https"
-	} else {
-		scheme = "http"
 	}
 
 	mux := http.NewServeMux()
